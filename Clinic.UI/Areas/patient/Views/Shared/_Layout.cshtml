@@ -52,7 +52,8 @@
                     <div class="dmc-nav-label">Profile</div>
                     <a class="dmc-nav-item @(ViewContext.RouteData.Values["controller"]?.ToString() == "Patient" && ViewContext.RouteData.Values["action"]?.ToString() == "Details" ? "active" : "")"
                        asp-area="patient" asp-controller="Patient" asp-action="Details">
-                        <i class="fa-solid fa-user-md fa-fw"></i> Profile
+                        <i class="fas fa-user-tie"></i>
+                        Profile
                     </a>
                 </div>
 
@@ -60,12 +61,22 @@
                     <div class="dmc-nav-label">Medical Records</div>
                     <a class="dmc-nav-item @(ViewContext.RouteData.Values["controller"]?.ToString() == "MedicalRecord" && ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")"
                         asp-area="patient" asp-controller="MedicalRecord" asp-action="Index">
-                        <i class="fa-solid fa-users fa-fw"></i> Medical Records
+                        <i class="fa-solid fa-file-waveform"></i>
+                        Medical Records
                     </a>
                 </div>
 
                 <div class="dmc-nav-section">
-                    <div class="dmc-nav-label">Scheduling</div>
+                    <div class="dmc-nav-label">Doctors</div>
+                    <a class="dmc-nav-item @(ViewContext.RouteData.Values["controller"]?.ToString() == "Doctor" && ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")"
+                       asp-area="patient" asp-controller="Doctor" asp-action="Index">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        Doctors
+                    </a>
+                </div>
+
+                <div class="dmc-nav-section">
+                    <div class="dmc-nav-label">Appointments</div>
                     <a class="dmc-nav-item @(ViewContext.RouteData.Values["controller"]?.ToString() == "Appointment" && ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")"
                        asp-area="patient" asp-controller="Appointment" asp-action="Index">
                         <i class="fa-solid fa-calendar-days fa-fw"></i> Appointments

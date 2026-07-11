@@ -1,11 +1,13 @@
 ﻿using Clinic.Application.Contracts.MedicalRecordContracts;
 using Clinic.Application.DTOs.MedicalRecordDTOs;
 using Clinic.Application.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clinic.UI.Areas.patient.Controllers
 {
     [Area("patient")]
+    [Authorize(Roles = "Patient")]
     public class TestController : Controller
     {
         private readonly ITestService _testService;

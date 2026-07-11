@@ -6,11 +6,13 @@ using Clinic.Application.Contracts.UserContract;
 using Clinic.Application.DTOs.AppointmentDTOs;
 using Clinic.Application.DTOs.ScheduleDTOs;
 using Clinic.Application.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clinic.UI.Areas.patient.Controllers
 {
     [Area("patient")]
+    [Authorize(Roles = "Patient")]
     public class AppointmentController : Controller
     {
         private readonly IAppointmentService _appointmentService;

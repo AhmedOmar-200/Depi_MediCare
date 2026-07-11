@@ -5,11 +5,13 @@ using Clinic.Application.DTOs.MedicalRecordDTOs;
 using Clinic.Application.Services.MedicalRecordServices;
 using Clinic.Core.Entities;
 using Clinic.UI.Areas.patient.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clinic.UI.Areas.patient.Controllers
 {
     [Area("patient")]
+    [Authorize(Roles = "Patient")]
     public class MedicalRecordController : Controller
     {
         private readonly IMedicalRecordService _medicalRecordService;
