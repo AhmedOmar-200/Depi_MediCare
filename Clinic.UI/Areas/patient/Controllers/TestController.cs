@@ -38,7 +38,7 @@ namespace Clinic.UI.Areas.patient.Controllers
         {
             if (file != null && file.Length > 0)
             {
-                testDTO.File = await FileHelper.UploadFile(file, "Tests", new[] { ".pdf ", ".png", ".jpg" });
+                testDTO.File = await FileHelper.UploadFile(file, "Tests", new[] { ".pdf", ".png", ".jpg" });
             }
 
             if (!ModelState.IsValid)
@@ -70,7 +70,7 @@ namespace Clinic.UI.Areas.patient.Controllers
             return RedirectToAction(
                 "MedicalRecord",
                 "MedicalRecord",
-                new { area = "doctor", medicalRecordId = testDTO.MedicalRecordId }
+                new { area = "patient", medicalRecordId = testDTO.MedicalRecordId }
             );
         }
     }

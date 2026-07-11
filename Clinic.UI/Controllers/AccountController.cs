@@ -103,7 +103,7 @@ namespace Clinic.UI.Controllers
                 }
                 else if (role == "Reciptionist")
                 {
-                    return Redirect("/reciptionist/Appointment/Today");
+                    return Redirect("/Appointment/Today");
                 }
                 else if (role == "Patient")
                 {

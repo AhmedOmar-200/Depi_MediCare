@@ -75,7 +75,7 @@ namespace Clinic.UI.Areas.patient.Controllers
             return RedirectToAction(
                 "MedicalRecord",
                 "MedicalRecord",
-                new { area = "doctor", medicalRecordId = medicalRadiologyDTO.MedicalRecordId }
+                new { area = "patient", medicalRecordId = medicalRadiologyDTO.MedicalRecordId }
             );
         }
     }
