@@ -32,7 +32,6 @@ namespace Clinic.UI.Areas.patient.Controllers
 
         public async Task<IActionResult> Index(PatientSearchAppointment searchAppointment , int pageNumber = 1, int pageSize = 10)
         {
-            var patientId = await _patientService.GetPatientId();
             var result = await _appointmentService.PatientSearchAppointments(searchAppointment, pageNumber, pageSize);
 
             ViewBag.lstDoctors = await _doctorService.GetAll();

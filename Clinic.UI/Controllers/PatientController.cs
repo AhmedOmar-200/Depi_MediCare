@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Clinic.UI.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Riciptionist")]
     public class PatientController : Controller
     {
         private readonly IPatientService _patientService;

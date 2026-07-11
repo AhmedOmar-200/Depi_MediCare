@@ -42,9 +42,9 @@ namespace Clinic.UI.Areas.patient.Controllers
 
             var result = medicalRecord.DocMedicalRecord;
 
-            medicalRecord.Tests = await _testService.GetPageTests(result.Id, medicalRecordPagination.TestPageNumber, medicalRecordPagination.TestPageSize);
-            medicalRecord.MedicalRadiologies = await _medicalRadiologyService.GetPageMedicalRadiologies(result.Id, medicalRecordPagination.MedicalRadilogyPageNumber, medicalRecordPagination.MedicalRadilogyPageSize);
-            medicalRecord.Appointments = await _appointmentService.GetMedicalRecordAppointments(result.PatientId, medicalRecordPagination.AppointmentPageNumber, medicalRecordPagination.AppointmentPageSize);
+            medicalRecord.Tests = await _testService.GetPageTestsForPatient(result.Id, medicalRecordPagination.TestPageNumber, medicalRecordPagination.TestPageSize);
+            medicalRecord.MedicalRadiologies = await _medicalRadiologyService.GetPageMedicalRadiologiesForPatient(result.Id, medicalRecordPagination.MedicalRadilogyPageNumber, medicalRecordPagination.MedicalRadilogyPageSize);
+            medicalRecord.Appointments = await _appointmentService.GetMedicalRecordAppointmentsForPatient(result.PatientId, medicalRecordPagination.AppointmentPageNumber, medicalRecordPagination.AppointmentPageSize);
 
             return View(medicalRecord);
         }

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Clinic.UI.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Riciptionist")]
     public class DoctorController : Controller
     {
         private readonly IDoctorService _doctorService;
