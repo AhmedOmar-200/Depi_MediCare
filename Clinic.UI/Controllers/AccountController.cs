@@ -48,7 +48,7 @@ namespace Clinic.UI.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<IActionResult> SignUp(UserDTO userDTO)
+        public async Task<IActionResult> SignUp(PatientRegisterDTO userDTO)
         {
             if (!ModelState.IsValid)
             {
@@ -71,7 +71,6 @@ namespace Clinic.UI.Controllers
                 return View("Register", userDTO);
             }
         }
-
 
         [AllowAnonymous]
         public async Task<IActionResult> SignIn(LoginDTO loginDTO)
