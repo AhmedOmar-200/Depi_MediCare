@@ -7,7 +7,7 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="~/admin/css/User/register.css" />
+    <link rel="stylesheet" href="~/css/User/register.css" />
 }
 
 <div class="container-fluid">
@@ -18,13 +18,6 @@
         <div class="card-body-custom">
             <form method="post" asp-action="SignUp">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="input-group-custom">
-                            <label class="form-label-custom">Username</label>
-                            <input asp-for="UserName" class="form-control-custom" placeholder="e.g. john_dream" />
-                            <span asp-validation-for="UserName" class="text-danger"></span>
-                        </div>
-                    </div>
                     <div class="col-md-6">
                         <div class="input-group-custom">
                             <label class="form-label-custom">First Name</label>
@@ -44,6 +37,13 @@
                             <label class="form-label-custom">Phone Number</label>
                             <input asp-for="PhoneNumber" class="form-control-custom" placeholder="+1 234..." />
                             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group-custom">
+                            <label class="form-label-custom">Username</label>
+                            <input asp-for="UserName" class="form-control-custom" placeholder="e.g. john_dream" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-6">

@@ -137,6 +137,78 @@ namespace Clinic.UI.Services
             await _signInManager.SignOutAsync();
         }
 
+        public async Task<UserResultDTO> RegisterAsyncForPatient(UserDTO registerDto)
+        {
+            var checkUser = await _userManager.FindByNameAsync(registerDto.UserName);
+
+            if (checkUser != null)
+            {
+                return (
+                    new UserResultDTO
+                    {
+                        success = false,
+                        errors = new[] { "UserName is already in use." }
+                    }
+                );
+            }
+
+            if (registerDto.Password != registerDto.ConfirmPassword)
+            {
+                return (
+                    new UserResultDTO
+                    {
+                        success = false,
+                        errors = new[] { "Passwords don't match." }
+                    }
+                );
+            }
+
+            registerDto.CurrentState = CurrentState.Active;
+
+            AppUser appUser = new AppUser
+            {
+                FirstName = registerDto.FirstName,
+                LastName = registerDto.LastName,
+                PhoneNumber = registerDto.PhoneNumber,
+                UserName = registerDto.UserName,
+                Email = registerDto.UserName + "@Dream.com"
+            };
+
+            var registerResult = await _userManager.CreateAsync(appUser, registerDto.Password);
+
+            if (registerResult.Succeeded)
+            {
+                var RoleResult = await _userManager.AddToRoleAsync(appUser, "Patient");
+
+                if (RoleResult.Succeeded)
+                {
+                    return (
+                        new UserResultDTO
+                        {
+                            success = true,
+                            errors = Array.Empty<string>(),
+                        }
+                    );
+                }
+
+                return (
+                    new UserResultDTO
+                    {
+                        success = false,
+                        errors = RoleResult.Errors.Select(e => e.Description).ToArray()
+                    }
+                );
+            }
+
+            return (
+                new UserResultDTO
+                {
+                    success = false,
+                    errors = registerResult.Errors.Select(e => e.Description).ToArray()
+                }
+            );
+        }
+
         public async Task<(UserResultDTO, UserRegistrationResult)> RegisterAsync(UserDTO registerDto)
         {
             var checkUser = await _userManager.FindByNameAsync(registerDto.UserName);

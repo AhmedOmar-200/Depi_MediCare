@@ -15,7 +15,7 @@ namespace Clinic.UI.Controllers
             _userService = userService;
         }
 
-        [Authorize(Roles ="Reciptionist , Admin , Doctor")]
+        //[Authorize(Roles ="Reciptionist , Admin , Doctor")]
         public async Task<IActionResult> Profile()
         {
             var userId = _userService.GetLoggedInUser().ToString();
@@ -36,10 +36,42 @@ namespace Clinic.UI.Controllers
         }
 
         [AllowAnonymous]
+        public IActionResult Register()
+        {
+            return View(new UserDTO());
+        }
+
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View(new LoginDTO());
         }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> SignUp(UserDTO userDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Register", userDTO);
+            }
+
+            var result = await _userService.RegisterAsyncForPatient(userDTO);
+
+            if (result.success)
+            {
+                return Redirect("/patient/Home/Index");
+            }
+            else
+            {
+                var errors = result.errors.Select(errors => errors).FirstOrDefault();
+
+                ViewBag.lstRoles = await _userService.GetAllRoles();
+
+                ModelState.AddModelError(string.Empty, errors);
+                return View("Register", userDTO);
+            }
+        }
+
 
         [AllowAnonymous]
         public async Task<IActionResult> SignIn(LoginDTO loginDTO)
